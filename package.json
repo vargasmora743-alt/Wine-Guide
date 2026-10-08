@@ -1,0 +1,9 @@
+{
+  "name": "wine-guide",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Private mobile Wine Guide 2.0",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
