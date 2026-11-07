@@ -6,11 +6,15 @@ const port = process.env.PORT || 10000;
 const root = path.join(__dirname, 'public');
 
 const server = http.createServer((req, res) => {
-  let urlPath = decodeURIComponent((req.url || '/').split('?')[0]);
+  let urlPath;
+  try { urlPath = decodeURIComponent((req.url || '/').split('?')[0]); }
+  catch { res.writeHead(400); return res.end('Bad request'); }
   if (urlPath === '/') urlPath = '/index.html';
 
-  const filePath = path.normalize(path.join(root, urlPath));
-  if (!filePath.startsWith(root)) {
+  const filePath = urlPath === '/index.html'
+    ? path.join(__dirname, 'index.html')
+    : path.resolve(root, '.' + urlPath);
+  if (urlPath !== '/index.html' && !filePath.startsWith(root + path.sep)) {
     res.writeHead(403);
     return res.end('Forbidden');
   }
