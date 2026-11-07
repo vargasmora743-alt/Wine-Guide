@@ -1,9 +1,15 @@
 {
   "name": "wine-guide",
-  "version": "2.0.0",
+  "version": "3.2.0",
   "private": true,
-  "description": "Private mobile Wine Guide 2.0",
+  "description": "Wine Guide 3.2 · Staff Sommelier and Owner Executive Pro",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "node --test tests/*.test.js",
+    "test:browser": "node --test tests/browser.js"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1",
+    "jsdom": "31.0.0"
   }
 }
